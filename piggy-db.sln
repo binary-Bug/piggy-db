@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "piggy-ui-db", "piggy-ui-db.sqlproj", "{1B041CD5-A9DB-4272-8797-0781712C0EA1}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PIGGY_UI", "PIGGY_UI.sqlproj", "{1B041CD5-A9DB-4272-8797-0781712C0EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

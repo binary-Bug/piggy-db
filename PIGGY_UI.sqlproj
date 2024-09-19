@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>piggy_ui_db</Name>
+    <Name>PIGGY_UI</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{1b041cd5-a9db-4272-8797-0781712c0ea1}</ProjectGuid>
@@ -71,7 +71,9 @@
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
     <Build Include="dbo\Tables\AspNetUserRoles.sql" />
     <Build Include="dbo\Tables\AspNetUserTokens.sql" />
-    <Build Include="dbo\Tables\LURegion.sql" />
     <Build Include="dbo\Tables\UserRegionMap.sql" />
+    <Build Include="dbo\Tables\LURestaurentTypes.sql" />
+    <Build Include="dbo\Tables\LURestaurents.sql" />
+    <Build Include="dbo\Tables\LURegions.sql" />
   </ItemGroup>
 </Project>
