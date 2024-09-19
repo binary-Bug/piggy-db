@@ -2,10 +2,12 @@
     [RestaurentId]      INT            IDENTITY (1, 1) NOT NULL,
     [RestaurentName]    NVARCHAR (MAX) NOT NULL,
     [RestaurentTypeId]  INT            NOT NULL,
-    [RestaurentOwnerId] INT            NOT NULL,
+    [RestaurentOwnerId] NVARCHAR (MAX) NOT NULL,
     CONSTRAINT [PK_LURestaurents] PRIMARY KEY CLUSTERED ([RestaurentId] ASC),
     CONSTRAINT [FK_LURestaurents_LURestaurentTypes_RestaurentTypeId] FOREIGN KEY ([RestaurentTypeId]) REFERENCES [dbo].[LURestaurentTypes] ([RestaurentTypeId]) ON DELETE CASCADE
 );
+
+
 
 
 GO
