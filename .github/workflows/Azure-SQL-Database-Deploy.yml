@@ -1,0 +1,61 @@
+﻿name: Deploy To Azure SQL database 🚀🚀
+
+#Sets the trigger to update when update is pushed to a keyvault-feature branch
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+
+  # Job to build and publish the dacpac
+  Build_Dacpac:
+    runs-on: windows-2019
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+      # Find msbuild
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      # create dacpac using MSBUILD
+      - name: Build Database project
+        run: |
+          msbuild PIGGY_UI.sqlproj -property:Configuration=Release
+      # Publish artifact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AzureSQLDB
+          path: ${{ github.workspace }}/bin/Release/ 
+
+  # Deploy dacpac job
+  Deploy_Dacpac:
+    # Set the dependency for the build job
+    needs: Build_Dacpac
+    runs-on: ubuntu-latest
+
+    # Steps to deploy the updates to Azure SQL Database
+    steps:
+      - name: Download artifact containing dacpac
+        # Downloads Data artifact to dacpac folder
+        uses: actions/download-artifact@v4
+        with:
+          name: AzureSQLDB
+          
+      # Login using Azure credentials 
+      # Required to add a temporary firewall rule for the runner
+      #- uses: azure/login@v1.4.6
+      #  with:
+      #    creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      # Installs dacpac
+      - name: Azure SQL Deploy
+        uses: Azure/sql-action@v2.3
+        with:
+          # The connection string, including authentication information, for the Azure SQL Database.
+          connection-string: '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
+          # Path to the dacpac file in the artifact
+          path: './PIGGY_UI.dacpac'
+          # Action we want it to do, in this case 'Publish' the contents of the dacpac to the database
+          action: 'publish'
