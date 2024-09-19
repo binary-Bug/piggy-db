@@ -9,7 +9,7 @@ on:
 jobs:
 
   # Job to build and publish the dacpac
-  Build_Dacpac:
+  build:
     runs-on: windows-2019
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -28,11 +28,12 @@ jobs:
         with:
           name: AzureSQLDB
           path: ${{ github.workspace }}/bin/Release/ 
+          retention-days: 1
 
   # Deploy dacpac job
-  Deploy_Dacpac:
+  deploy:
     # Set the dependency for the build job
-    needs: Build_Dacpac
+    needs: build
     runs-on: ubuntu-latest
 
     # Steps to deploy the updates to Azure SQL Database
