@@ -6,7 +6,7 @@ on:
       - "**"
 
 
-jobs:
+jobs: # This job updates the release version
   UpdateRelease:
     name: Update Release
     runs-on: ubuntu-latest
