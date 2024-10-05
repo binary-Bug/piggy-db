@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Get next version
       id: get_next_version
-      uses: hugcabbage/next-version
+      uses: hugcabbage/next-version@v1.0.4
       with:
         prefix: 'v' # optional, defaults to ''
         mode: 3
