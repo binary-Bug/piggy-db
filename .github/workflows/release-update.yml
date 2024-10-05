@@ -19,6 +19,7 @@ jobs:
       with:
         prefix: 'v' # optional, defaults to ''
         mode: 3
+        repo: "https://github.com/binary-Bug/piggy-db"
     - name: Show the next version
       run: |
         echo ${{ steps.get_next_version.outputs.version }}
