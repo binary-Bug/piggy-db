@@ -36,6 +36,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    environment:
+      name: 'Production'
+
     # Steps to deploy the updates to Azure SQL Database
     steps:
       - name: Download artifact containing dacpac
